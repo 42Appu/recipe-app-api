@@ -64,7 +64,7 @@ class PrivateRecipeTests(TestCase):
         )
         self.client.force_authenticate(self.user)
 
-    def test_retrive_recipes(self):
+    def test_retrive_recipe(self):
         """Test retrive a list of recipes."""
         create_recipe(user=self.user)
         create_recipe(user=self.user)
@@ -91,15 +91,4 @@ class PrivateRecipeTests(TestCase):
         recipes = Recipe.objects.filter(user=self.user)
         serializer = RecipeSerializer(recipes, many=True)
         self.assertEqual(res.status_code, status.HTTP_200_OK)
-        self.assertEqual(res.data, serializer.data)
-
-
-    def test_get_recipe_detail(self):
-        """Test get recipe detail."""
-        recipe = create_recipe(user=self.user)
-
-        url = detail_url(recipe.id)
-        res = self.client.get(url)
-
-        serializer = RecipeDetailSerializer(recipe)
         self.assertEqual(res.data, serializer.data)

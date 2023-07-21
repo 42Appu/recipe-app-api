@@ -28,7 +28,7 @@ def create_recipe(user, **params):
         'time_minutes': 22,
         'price': Decimal('5.25'),
         'description': 'Sample description',
-        'link': 'http://example.com/recipe.pdf',
+        'link': 'https://dictionary.cambridge.org/dictionary/english/item',
     }
     default.update(params)
 
@@ -59,8 +59,10 @@ class PrivateRecipeTests(TestCase):
     def setUp(self):
         self.client = APIClient()
         self.user = get_user_model().objects.create_user(
-            'user@example.com',
-            'testpass123'
+            # 'user@example.com',
+            # 'testpass123'
+            'Appu@example.com'
+            'Appu123'
         )
         self.client.force_authenticate(self.user)
 

@@ -9,8 +9,8 @@ from rest_framework.routers import DefaultRouter
 from recipe import views
 
 router = DefaultRouter()
-
 router.register('recipes', views.RecipeViewSet)
+router.admin.site.register('tags', views.TagViewSet)
 
 app_name = 'recipe'
 

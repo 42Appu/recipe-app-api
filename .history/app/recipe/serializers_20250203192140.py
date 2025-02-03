@@ -41,7 +41,7 @@ class RecipeSerializer(serializers.ModelSerializer):
         """Create a recipe"""
         tags = validated_data.pop('tags', [])
         recipe = Recipe.objects.create(**validated_data)
-        self._get_or_create_tags(tags,recipe)
+        auth_user = self.context['request'].user
 
         return recipe
 
